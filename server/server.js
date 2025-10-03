@@ -7,7 +7,7 @@ import userRouter from './routes/userRoute.js';
 import messageRouter from './routes/messageRoute.js';
 import { Server } from 'socket.io';
 
-const PORT = process.env.PORT || 5000
+
 
 // Create http and express server
 const app = express();
@@ -57,9 +57,8 @@ app.use("/api/messages",messageRouter);
 await connectDB()
 
 if (process.env.NODE_ENV !== "production") {
-    server.listen(PORT,()=>{
-    console.log("Server is running on PORT : "+ PORT);
-})
+    const PORT = process.env.PORT || 5000;
+    server.listen(PORT,()=> console.log("Server is running on PORT : "+ PORT));
 }
 
 // export for vercel 
